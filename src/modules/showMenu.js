@@ -6,6 +6,8 @@ const showMenu = () => {
       popupDialogMenu.style.right = `645px`;
     } else if (element.clientWidth > 575) {
       popupDialogMenu.style.right = `555px`;
+    } else {
+      popupDialogMenu.style.top = `100vh`;
     }
   });
 };

@@ -54,10 +54,13 @@ const showMenu = () => {
         switchMenu();
         return;
       }
+      if (target.closest('.popup-dialog-menu') === null) {
+        switchMenu();
+        return;
+      }
       if (target.closest('a') === null) {
         return;
       } else if (
-        target.closest('.popup-dialog-menu') === null ||
         target.closest('a').getAttribute('href') === '#' ||
         target.closest('a').getAttribute('href').indexOf('#') !== 0
       ) {

@@ -9,9 +9,10 @@ smoothscroll.polyfill();
 import maskPhone from './modules/maskPhone';
 import phoneList from './modules/phoneList';
 import showMenu from './modules/showMenu';
-import repairTypes from './modules/repairTypes';
+import togglePopup from './modules/togglePopup';
 
 maskPhone('input[name="phone"]', '+7 (___) ___-__-__');
 phoneList();
 showMenu();
-repairTypes();
+togglePopup('.link-list', '.popup-repair-types');
+togglePopup('.link-privacy', '.popup-privacy');

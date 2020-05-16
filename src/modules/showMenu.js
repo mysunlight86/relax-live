@@ -1,7 +1,6 @@
 const showMenu = () => {
   const popupDialogMenu = document.querySelector('.popup-dialog-menu');
   let isMenuOpened = false;
-  // console.log(document.querySelectorAll('.no-overflow'));
 
   // switch menu
   const switchMenu = () => {
@@ -25,59 +24,54 @@ const showMenu = () => {
   // smooth scroll
   document.querySelector('body').addEventListener('click', event => {
     const target = event.target;
-    try {
-      if (target.classList.contains('menu') ||
+    if (target.classList.contains('menu') ||
       target.closest('.menu') !== null) {
-        switchMenu();
-        return;
-      }
-      if (!isMenuOpened) {
-        if (target.closest('a') === null) {
-          return;
-        } else if (
-          target.closest('a').tagName === 'A' &&
-          target.closest('a').getAttribute('href').indexOf('#') === 0
-        ) {
-          event.preventDefault();
-          const blockID = target.closest('a').getAttribute('href').substr(1);
-          document.getElementById(blockID).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-        return;
-      }
-      if (
-        target.closest('.close-menu') !== null &&
-        target.closest('.popup-dialog-menu') !== null
-      ) {
-        switchMenu();
-        return;
-      }
-      if (target.closest('.popup-dialog-menu') === null) {
-        switchMenu();
-        return;
-      }
-      if (target.closest('a') === null) {
+      switchMenu();
+      return;
+    }
+    if (!isMenuOpened) {
+      if (target.closest('a') === null || target.closest('a').getAttribute('href') === null) {
         return;
       } else if (
-        target.closest('a').getAttribute('href') === '#' ||
-        target.closest('a').getAttribute('href').indexOf('#') !== 0
+        target.closest('a').tagName === 'A' &&
+        target.closest('a').getAttribute('href').indexOf('#') === 0
       ) {
-        switchMenu();
-        return;
-      } else if (target.tagName === 'A' && target.closest('.popup-dialog-menu')) {
         event.preventDefault();
-        switchMenu();
         const blockID = target.closest('a').getAttribute('href').substr(1);
         document.getElementById(blockID).scrollIntoView({
           behavior: 'smooth',
           block: 'start'
         });
-        return;
       }
-    } catch (error) {
-      console.warn(error);
+      return;
+    }
+    if (
+      target.closest('.close-menu') !== null &&
+      target.closest('.popup-dialog-menu') !== null
+    ) {
+      switchMenu();
+      return;
+    }
+    if (target.closest('.popup-dialog-menu') === null) {
+      switchMenu();
+      return;
+    }
+    if (target.closest('a') === null) {
+      return;
+    } else if (
+      target.closest('a').getAttribute('href') === '#' ||
+      target.closest('a').getAttribute('href').indexOf('#') !== 0
+    ) {
+      switchMenu();
+      return;
+    } else if (target.tagName === 'A' && target.closest('.popup-dialog-menu')) {
+      event.preventDefault();
+      switchMenu();
+      const blockID = target.closest('a').getAttribute('href').substr(1);
+      document.getElementById(blockID).scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
       return;
     }
   });

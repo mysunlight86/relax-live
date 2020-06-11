@@ -10,6 +10,7 @@ import maskPhone from './modules/maskPhone';
 import phoneList from './modules/phoneList';
 import showMenu from './modules/showMenu';
 import togglePopup from './modules/togglePopup';
+import tips from './modules/tips';
 import Validator from './modules/validator';
 
 maskPhone('input[name="phone"]');
@@ -17,6 +18,7 @@ phoneList();
 showMenu();
 togglePopup('.link-list', '.popup-repair-types');
 togglePopup('.link-privacy', '.popup-privacy');
+tips();
 
 // Validate
 const form1 = new Validator({
